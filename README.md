@@ -2,7 +2,9 @@
 
 This tool coordinate the difference of coding style of each developer.
 
+<!--
 [Source Code](style-coordinator-master.zip)
+-->
 
 ## Build & Install
 
@@ -33,7 +35,7 @@ Run the following command.
 If you specify an option `--global` alternative to `--local`, this configuration is available only under your repository.
 
 ```shell
-$ git config --global filter.format.clean ~/style-coordinate/bin/style-coordinater style-default.xml
+$ git config --global filter.format.clean ~/style-coordinator/bin/style-coordinater style-default.xml
 $ git config --global filter.format.smudge ~/style-coordinator/bin/style-coordinater style.xml
 ```
 
