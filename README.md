@@ -35,8 +35,8 @@ Run the following command.
 If you specify an option `--global` alternative to `--local`, this configuration is available only under your repository.
 
 ```shell
-$ git config --global filter.format.clean ~/style-coordinator/bin/style-coordinater style-default.xml
-$ git config --global filter.format.smudge ~/style-coordinator/bin/style-coordinater style.xml
+$ git config --global filter.format.clean ~/style-coordinator/bin/style-coordinator style-default.xml
+$ git config --global filter.format.smudge ~/style-coordinator/bin/style-coordinator style.xml
 ```
 
 ## File describing style
