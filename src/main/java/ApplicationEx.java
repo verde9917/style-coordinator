@@ -34,7 +34,7 @@ public class ApplicationEx {
   private final static Logger log = LoggerFactory.getLogger(ApplicationEx.class);
 
   public static void main(String[] args)
-      throws IOException, InvalidInputException, ParserConfigurationException {
+      throws IOException, InvalidInputException, ParserConfigurationException, SAXException {
 
     String inputSourceCode;
     StringBuilder sb = new StringBuilder();
@@ -80,7 +80,7 @@ public class ApplicationEx {
   }
 
   private static Map<String, String> readStyle(File file)
-      throws ParserConfigurationException, IOException {
+      throws ParserConfigurationException, SAXException, IOException {
     Objects.requireNonNull(file);
     // take default Eclipse formatting options
     Map<String, String> options = DefaultCodeFormatterOptions.getEclipseDefaultSettings().getMap();
@@ -88,7 +88,22 @@ public class ApplicationEx {
     options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
     options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
     options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
-
+    // read from style file
+//    Path styleXml = file.toPath();
+//    if (Files.exists(styleXml)) {
+//      SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
+//      parser.parse(styleXml.toFile(), new DefaultHandler() {
+//        @Override
+//        public void startElement(String uri, String localName, String qName,
+//            Attributes attributes) {
+//          if (qName.equals("setting")) {
+//            String id = attributes.getValue("id");
+//            String value = attributes.getValue("value");
+//            options.put(id, value);
+//          }
+//        }
+//      });
+//    }
     return options;
   }
 
@@ -116,7 +131,7 @@ public class ApplicationEx {
   }
 
   private static String format(String source, Map<String, String> style)
-      throws IOException, ParserConfigurationException {
+      throws IOException, ParserConfigurationException, SAXException {
     Objects.requireNonNull(source);
     Objects.requireNonNull(style);
     // instantiate the default code formatter with the given options
