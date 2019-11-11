@@ -96,22 +96,11 @@ public class ApplicationEx {
     options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
     options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
     options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
-    // read from style file
-//    Path styleXml = file.toPath();
-//    if (Files.exists(styleXml)) {
-//      SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
-//      parser.parse(styleXml.toFile(), new DefaultHandler() {
-//        @Override
-//        public void startElement(String uri, String localName, String qName,
-//            Attributes attributes) {
-//          if (qName.equals("setting")) {
-//            String id = attributes.getValue("id");
-//            String value = attributes.getValue("value");
-//            options.put(id, value);
-//          }
-//        }
-//      });
-//    }
+    // 空行が全部消える
+    // コメント行の前の改行が消される
+    // コメント行の後ろに絶対改行が入る
+    options.put("org.eclipse.jdt.core.formatter.number_of_empty_lines_to_preserve","1");
+    options.put("org.eclipse.jdt.core.formatter.indent_empty_lines","false");
     return options;
   }
 
