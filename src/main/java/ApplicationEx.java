@@ -1,6 +1,9 @@
 import static org.eclipse.jdt.internal.compiler.parser.TerminalTokens.TokenNameCOMMENT_LINE;
 import static org.eclipse.jdt.internal.compiler.parser.TerminalTokens.TokenNameEOF;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,18 +35,19 @@ public class ApplicationEx {
 
   public static void main(String[] args)
       throws IOException, InvalidInputException, ParserConfigurationException, SAXException {
+
     String inputSourceCode;
     StringBuilder sb = new StringBuilder();
-    java.util.Scanner scanner = new java.util.Scanner(System.in);
-    while (scanner.hasNextLine()) {
-      sb.append(scanner.nextLine());
-      sb.append("\n");
+    try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
+      String string = reader.readLine();
+      while (string != null){
+        sb.append(string + System.getProperty("line.separator"));
+        string = reader.readLine();
+      }
     }
+
     inputSourceCode = sb.toString();
     String outputSourceCode;
-    if (args.length == 0) {
-      outputSourceCode = tokenize(inputSourceCode, System.getProperty("line.separator"));
-    } else {
       try {
         inputSourceCode = breakStyle(inputSourceCode);
       } catch (Exception e) {
@@ -53,7 +57,7 @@ public class ApplicationEx {
         throw e;
       }
       outputSourceCode = format(inputSourceCode, readStyle(new File(args[0])));
-    }
+
     System.out.println(outputSourceCode);
     System.out.flush();
     System.out.close();
