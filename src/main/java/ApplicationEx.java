@@ -4,6 +4,7 @@ import static org.eclipse.jdt.internal.compiler.parser.TerminalTokens.TokenNameE
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -58,9 +59,16 @@ public class ApplicationEx {
       }
       outputSourceCode = format(inputSourceCode, readStyle(new File(args[0])));
 
-    System.out.println(outputSourceCode);
-    System.out.flush();
-    System.out.close();
+      String outputPath = args[1];
+
+      try{
+          File file = new File(args[1]);
+          FileWriter fw= new FileWriter(file);
+          fw.write(outputSourceCode);
+          fw.close();
+      }catch(IOException e){
+          System.out.println(e);
+      }
   }
 
   private static String tokenize(String source, String lineSeparator) throws InvalidInputException {
