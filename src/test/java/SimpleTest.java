@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.junit.Assert;
 import org.junit.Test;
+import style.coordinator.ApplicationEx;
 
 public class SimpleTest {
 

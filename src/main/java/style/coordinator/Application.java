@@ -1,3 +1,5 @@
+package style.coordinator;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;

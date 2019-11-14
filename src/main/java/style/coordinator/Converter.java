@@ -1,3 +1,5 @@
+package style.coordinator;
+
 import static org.eclipse.jdt.internal.compiler.parser.TerminalTokens.TokenNameEOF;
 import java.io.IOException;
 import java.nio.file.Files;
